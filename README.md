@@ -1,8 +1,7 @@
 # Help Desk Ticket Lab (Active Directory)
 
 ## 📌 Overview
-This project simulates real-world IT help desk scenarios using an Active Directory home lab environment.  
-It focuses on troubleshooting common user issues including authentication failures, network problems, access control, and account lockouts.
+> Hands-on help desk ticket simulation demonstrating real-world troubleshooting using Active Directory and Windows environments.
 
 Each scenario is structured as a help desk ticket with:
 - Issue
@@ -48,7 +47,7 @@ Incorrect DNS configuration on client machine preventing domain resolution.
 ### 🛠️ Investigation
 - Verified IP configuration using `ipconfig /all`
 - Tested domain resolution using `nslookup homelab.local`
-- Confirmed DNS pointing to external server (8.8.8.8)
+- Confirmed DNS pointing to incorrect DNS (8.8.8.8) instead of domain controller
 
 📸 **DNS misconfiguration on client**
 
@@ -158,7 +157,7 @@ Machine removed from domain and placed in WORKGROUP.
 
 ### 🛠️ Investigation
 - Verified system membership settings
-- Confirmed domain relationship broken
+- Confirmed client machine was not joined to the domain
 
 📸 **Client machine showing WORKGROUP instead of domain**
 
@@ -232,6 +231,7 @@ Network connectivity and domain access restored.
 - Strengthened Active Directory and DNS troubleshooting skills  
 - Learned how misconfigurations impact authentication and access  
 - Applied structured problem-solving (Issue → Cause → Fix → Verify)
+- Simulated common help desk tickets and applied structured troubleshooting methodology in a controlled lab environment
 
 ---
 
