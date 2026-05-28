@@ -36,40 +36,40 @@ To simulate Tier 1 / Tier 2 help desk responsibilities including:
 
 ---
 
-## 🎫 Ticket #1 — User Cannot Log Into Domain
+## Ticket #1 — User Cannot Log Into Domain
 
-### 🧾 Issue
+### Issue
 User `testuser` is unable to log into the domain.
 
-### 🔍 Cause
+### Cause
 Incorrect DNS configuration on client machine preventing domain resolution.
 
-### 🛠️ Investigation
+### Investigation
 - Verified IP configuration using `ipconfig /all`
 - Tested domain resolution using `nslookup homelab.local`
-- Confirmed DNS pointing to incorrect DNS (8.8.8.8) instead of domain controller
+- Confirmed client DNS configured to use external DNS server (8.8.8.8) instead of the domain controller
 
-📸 **DNS misconfiguration on client**
+**DNS misconfiguration on client**
 
 ![DNS Broken](screenshots/02-dns-broken.png)
 
-📸 **nslookup failing to resolve domain**
+**nslookup failing to resolve domain**
 
 ![NSLookup Fail](screenshots/05-nslookup-fail.png)
 
-### ✅ Resolution
+### Resolution
 Updated DNS settings on CLIENT01 to point to Domain Controller:
 - 192.168.10.10
 
 
-📸 **DNS configuration corrected**
+**DNS configuration corrected**
 
 ![DNS Fixed](screenshots/06-dns-fixed.png)
 
-### ✔️ Verification
+### Verification
 User successfully logged into domain after DNS correction.
 
-📸 **Successful domain login**
+**Successful domain login**
 
 ![Login Success](screenshots/07-login-success.png)
 
@@ -77,36 +77,36 @@ User successfully logged into domain after DNS correction.
 
 ## 🎫 Ticket #2 — Access Denied to Shared Folder
 
-### 🧾 Issue
+###  Issue
 User `jsmith` unable to access HR shared folder.
 
-### 🔍 Cause
+### Cause
 Missing security group permissions due to removed HR-Users group.
 
-### 🛠️ Investigation
+### Investigation
 - Checked NTFS permissions on `C:\Departments\HR`
 - Confirmed HR-Users group missing
 - Verified access denied from client machine
 
-📸 **Access denied when opening HR folder**
+**Access denied when opening HR folder**
 
 ![Access Denied](screenshots/09-access-denied.png)
 
-📸 **Security tab showing missing HR-Users group**
+**Security tab showing missing HR-Users group**
 
 ![Permission Check](screenshots/10-permission-check.png)
 
-### ✅ Resolution
+### Resolution
 Re-added HR-Users group and assigned appropriate permissions.
 
-📸 **HR-Users group re-added to folder permissions**
+**HR-Users group re-added to folder permissions**
 
 ![Permission Fixed](screenshots/11-permission-fixed.png)
 
-### ✔️ Verification
+### Verification
 User regained access to HR folder from client machine.
 
-📸 **Access to HR folder restored**
+**Access to HR folder restored**
 
 ![Access Restored](screenshots/12-access-restored.png)
 
@@ -114,70 +114,70 @@ User regained access to HR folder from client machine.
 
 ## 🎫 Ticket #3 — Account Lockout
 
-### 🧾 Issue
+###  Issue
 User `mlopez` account locked after failed login attempts.
 
-### 🔍 Cause
+### Cause
 Multiple incorrect password attempts triggered lockout policy.
 
-### 🛠️ Investigation
+### Investigation
 - Checked Active Directory Users and Computers
 - Verified account lock status under user properties
 
-📸 **Account locked error on login**
+**Account locked error on login**
 
 ![Account Locked](screenshots/13-account-locked.png)
 
-📸 **Account lockout confirmed in Active Directory**
+**Account lockout confirmed in Active Directory**
 
 ![Lockout Confirmed](screenshots/14-lockout-confirm.png)
 
-### ✅ Resolution
+### Resolution
 Unlocked user account in Active Directory.
 
-📸 **Account unlocked in AD**
+**Account unlocked in AD**
 
 ![Account Unlocked](screenshots/15-account-unlocked.png)
 
-### ✔️ Verification
+### Verification
 User successfully logged in after unlock.
 
-📸 **Login restored successfully**
+**Login restored successfully**
 
 ![Login Restored](screenshots/16-login-restored.png)
 ---
 
 ## 🎫 Ticket #4 — Client Not Joined to Domain
 
-### 🧾 Issue
+###  Issue
 CLIENT01 unable to authenticate domain users.
 
-### 🔍 Cause
+### Cause
 Machine removed from domain and placed in WORKGROUP.
 
-### 🛠️ Investigation
+### Investigation
 - Verified system membership settings
-- Confirmed client machine was not joined to the domain
+- Confirmed CLIENT01 was joined to WORKGROUP instead of homelab.local
 
-📸 **Client machine showing WORKGROUP instead of domain**
+**Client machine showing WORKGROUP instead of domain**
 
 ![Workgroup](screenshots/17-workgroup.png)
 
-📸 **Domain login failure**
+**Domain login failure**
 
 ![Domain Login Fail](screenshots/18-domain-login-fail.png)
 
-### ✅ Resolution
+### Resolution
 Rejoined CLIENT01 to `homelab.local` domain using domain admin credentials.
 
-📸 **Domain join successful**
+**Domain join successful**
 
 ![Domain Join Success](screenshots/20-domain-join-success.png)
 
-### ✔️ Verification
+### Verification
 Domain login restored successfully.
 
-📸 **Successful domain login**
+**Successful domain login**
 
 ![Domain Login Success](screenshots/21-domain-login-success.png)
 
@@ -185,41 +185,41 @@ Domain login restored successfully.
 
 ## 🎫 Ticket #5 — Network Connectivity Failure
 
-### 🧾 Issue
+###  Issue
 Client unable to reach domain resources or services.
 
-### 🔍 Cause
+### Cause
 Incorrect IP configuration causing network isolation.
 
-### 🛠️ Investigation
+### Investigation
 - Checked IP configuration via `ipconfig`
 - Verified incorrect subnet assignment (192.168.50.x)
 
-📸 **Incorrect IP configuration**
+**Incorrect IP configuration**
 
 ![Wrong IP](screenshots/22-wrong-ip.png)
 
-📸 **Ping failure to domain controller**
+**Ping failure to domain controller**
 
 ![Ping Fail](screenshots/23-ping-fail.png)
 
-📸 **ipconfig showing incorrect network**
+**ipconfig showing incorrect network**
 
 ![IP Config Wrong](screenshots/24-ipconfig-wrong.png)
 
-### ✅ Resolution
+### Resolution
 Restored correct network settings:
 - IP: 192.168.10.20
 - DNS: 192.168.10.10
 
-📸 **Correct IP configuration restored**
+**Correct IP configuration restored**
 
 ![IP Fixed](screenshots/25-ip-fixed.png)
 
-### ✔️ Verification
+### Verification
 Network connectivity and domain access restored.
 
-📸 **Successful ping to domain controller**
+**Successful ping to domain controller**
 
 ![Ping Success](screenshots/26-ping-success.png)
 
@@ -229,7 +229,7 @@ Network connectivity and domain access restored.
 
 - Practiced real-world IT help desk troubleshooting workflows  
 - Strengthened Active Directory and DNS troubleshooting skills  
-- Learned how misconfigurations impact authentication and access  
+- Observed how DNS, permissions, and network misconfigurations affect authentication and resource access
 - Applied structured problem-solving (Issue → Cause → Fix → Verify)
 - Simulated common help desk tickets and applied structured troubleshooting methodology in a controlled lab environment
 
